@@ -145,6 +145,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/22/solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long PaiGu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello! Paigulong">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/22/solution/" class="post-title-link" itemprop="url">solution</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-08-22 01:43:32 / Modified: 01:44:36" itemprop="dateCreated datePublished" datetime="2022-08-22T01:43:32+08:00">2022-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>For each prefix a[0]….a[i], we can use dp[i] to represent the longest subsequence end with a[i].</p>
+<p>Consider a valid transition from j to i, $(j &lt; i)$, we have <code>a[i] ^ j &gt; a[j] ^ i</code></p>
+<p>Assume that the k th bit is the highest different bit. in k+1 th bit to the 30 th bit (0-indexed), a key observation is that <code>a[i] ^ i = a[j] ^ j</code> must be satisfied, which inspires us to use trie to insert <code>a[i] ^ i</code> for each i.</p>
+<p>as for speed up the transition from j, we can enumerate the highest different bit k, and the k th bit of a[i] ^ j must be 1 to ensure a[i] ^ j &gt; a[j] ^ i.</p>
+<p>what we should query can be described as </p>
+<ul>
+<li>a[j]^j have the same prefix with a[i]^i from 30 th bit to k+1 th</li>
+<li>the k th bit in a[j] must be 0 or 1, decided by the k th bit of i is 0 or 1.</li>
+</ul>
+<p>So we can use trie to keep max dp value in each subtree.</p>
+<h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><p>If k exceed the number of distinct elements in a, it’s easy to solve.</p>
+<p>Otherwise, the answer &lt;&#x3D; 2.</p>
+<p>What remains to learn is check whether the answer is 1</p>
+<p>we can enumerate the dialog, and use two pointer to move left-up, and right-down corner and maintain the occurence of each elements and the number of elements that all appeareances are covered by the current square.</p>
+<p>the complexity is $O(n^3)$</p>
+<p>Another approach is enumerate the length of the square, and consider each kind of element use 2-d prefix sum to check the valid position of the square.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/22/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -291,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
